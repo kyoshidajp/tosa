@@ -1,5 +1,10 @@
 Changes
 =======
 
-0.0.1
+0.0.2
+  * Add document link
+  * Raise not found error when Pull reqesut is not found 
+  * Add debug option
+
+0.0.2
   First release!

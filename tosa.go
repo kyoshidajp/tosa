@@ -9,7 +9,7 @@ import (
 	"github.com/skratchdot/open-golang/open"
 )
 
-const version = "0.0.1"
+const version = "0.0.2"
 
 const (
 	// EnvDebug is environmental var to handle debug mode
