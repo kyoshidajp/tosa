@@ -13,7 +13,7 @@ func main() {
 
 func _main() int {
 	cli := tosa.New()
-	if err := cli.Run(); err != nil {
+	if err := cli.Run(os.Args); err != nil {
 		fmt.Fprintf(os.Stdout, "%v\n", err)
 		return 1
 	}
