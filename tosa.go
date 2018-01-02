@@ -58,7 +58,10 @@ func tosa() error {
 		return err
 	}
 
-	openPr(client, sha)
+	if err := openPr(client, sha); err != nil {
+		return err
+	}
+
 	return nil
 }
 

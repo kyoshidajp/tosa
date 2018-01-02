@@ -11,6 +11,7 @@ import (
 	"github.com/github/hub/github"
 	api "github.com/google/go-github/github"
 	homedir "github.com/mitchellh/go-homedir"
+	"github.com/pkg/errors"
 )
 
 func NewClient() (*APIClient, error) {
@@ -53,6 +54,9 @@ func (a *APIClient) PullRequest(sha string) (*api.Issue, error) {
 
 	if len(res.Issues) == 0 {
 		a.repository = a.repository.Parent
+		if a.repository == nil {
+			return nil, errors.New("Pull Request is not found")
+		}
 		return a.PullRequest(sha)
 	}
 
