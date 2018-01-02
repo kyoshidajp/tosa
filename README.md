@@ -1,10 +1,12 @@
 # TOSA
 
 [![GitHub release](https://img.shields.io/github/release/kyoshidajp/tosa.svg?style=flat-square)][release]
+[![Go Documentation](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)][godocs]
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)][license]
 
 [release]: https://github.com/kyoshidajp/tosa/releases
 [license]: https://github.com/kyoshidajp/tosa/blob/master/LICENSE
+[godocs]: http://godoc.org/github.com/kyoshidajp/tosa
 
 TOSA is Open Source Available.
 
