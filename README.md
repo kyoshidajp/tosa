@@ -33,13 +33,26 @@ bind blame O @tosa %(commit)
 
 ## Install
 
-After install Golang. Then execute `go get`.
+### Homebrew
+
+If you have already installed [Homebrew](http://brew.sh/); then can install by brew command.
+
+```
+$ brew tap kyoshidajp/tosa
+$ brew install tosa
+```
+
+### go get
+
+If you are a Golang developper/user; then execute `go get`.
 
 ```
 $ go get -u github.com/kyoshidajp/tosa
 ```
 
-Or, download binary which meets your system from [Releases](release); then unarchive it and set `$PATH` to the `tosa`.
+### Manual
+
+Download binary which meets your system from [Releases](release); then unarchive it and set `$PATH` to the `tosa`.
 
 ## Author
 
