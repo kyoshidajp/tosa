@@ -1,0 +1,23 @@
+[[constraint]]
+  name = "github.com/github/hub"
+  version = "2.2.9"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/google/go-github"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/mitchellh/go-homedir"
+
+[[constraint]]
+  name = "github.com/pkg/errors"
+  version = "0.8.0"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/skratchdot/open-golang"
+
+[[constraint]]
+  branch = "master"
+  name = "golang.org/x/oauth2"
