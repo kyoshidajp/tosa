@@ -7,7 +7,6 @@ VERSION=$(patsubst "%",%,$(lastword $(shell grep 'const version' $(PROJECT_NAME)
 RELEASE_DIR=releases
 ARTIFACTS_DIR=$(RELEASE_DIR)/artifacts/$(VERSION)
 SRC_FILES = $(wildcard *.go cmd/$(PROJECT_NAME)/*.go)
-HAVE_GLIDE:=$(shell which glide >/dev/null 2>&1)
 GITHUB_USERNAME=kyoshidajp
 BUILD_TARGETS= \
 	build-linux-arm64 \
@@ -33,10 +32,6 @@ build: $(RELEASE_DIR)/$(PROJECT_NAME)_$(GOOS)_$(GOARCH)/$(PROJECT_NAME)$(SUFFIX)
 $(INTERNAL_BIN_DIR):
 	@echo "Creating $(INTERNAL_BIN_DIR)"
 	@mkdir -p $(INTERNAL_BIN_DIR)
-
-installdeps: glide $(SRC_FILES)
-	@echo "Installing dependencies..."
-	@PATH=$(INTERNAL_BIN_DIR)/$(GOOS)/$(GOARCH):$(PATH) glide install
 
 build-windows-amd64:
 	@$(MAKE) build GOOS=windows GOARCH=amd64 SUFFIX=.exe
