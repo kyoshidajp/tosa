@@ -11,7 +11,6 @@ import (
 	"github.com/github/hub/github"
 	api "github.com/google/go-github/github"
 	homedir "github.com/mitchellh/go-homedir"
-	"github.com/pkg/errors"
 )
 
 func NewClient() (*APIClient, error) {
@@ -39,6 +38,10 @@ func NewClient() (*APIClient, error) {
 
 	client := api.NewClient(tc)
 	repo, err := Repository(client)
+	if err != nil {
+		return nil, err
+	}
+
 	return &APIClient{
 		client:     client,
 		repository: repo,
@@ -55,8 +58,11 @@ func (a *APIClient) PullRequest(sha string) (*api.Issue, error) {
 	if len(res.Issues) == 0 {
 		a.repository = a.repository.Parent
 		if a.repository == nil {
-			return nil, errors.New("Pull Request is not found")
+			PrintErrorf("Pull Request is not found")
+			return nil, nil
+
 		}
+		Debugf("Searching parent repository: %s", *a.repository.FullName)
 		return a.PullRequest(sha)
 	}
 
@@ -64,15 +70,19 @@ func (a *APIClient) PullRequest(sha string) (*api.Issue, error) {
 }
 
 func Repository(client *api.Client) (*api.Repository, error) {
-	repo, err := github.LocalRepo()
+	localRepo, err := github.LocalRepo()
 	if err != nil {
 		return nil, err
 	}
-	prj, err := repo.MainProject()
+	prj, err := localRepo.MainProject()
 	if err != nil {
 		return nil, err
 	}
 
-	res, _, err := client.Repositories.Get(context.Background(), prj.Owner, prj.Name)
-	return res, err
+	repo, _, err := client.Repositories.Get(context.Background(), prj.Owner, prj.Name)
+	if err != nil {
+		PrintErrorf("Repository not found.\n%s", err)
+		return nil, err
+	}
+	return repo, err
 }

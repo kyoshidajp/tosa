@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/kyoshidajp/tosa"
@@ -13,9 +12,8 @@ func main() {
 
 func _main() int {
 	cli := tosa.New()
-	if err := cli.Run(os.Args); err != nil {
-		fmt.Fprintf(os.Stdout, "%v\n", err)
-		return 1
+	if exitCode := cli.Run(os.Args); exitCode != tosa.ExitCodeOK {
+		return exitCode
 	}
-	return 0
+	return tosa.ExitCodeOK
 }
