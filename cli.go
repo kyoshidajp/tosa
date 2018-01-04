@@ -32,6 +32,7 @@ const (
 	ExitCodeParseFlagsError
 	ExitCodeBadArgs
 	ExitCodePullRequestNotFound
+	ExitCodeOpenPageError
 )
 
 // Debugf prints debug output when EnvDebug is given
@@ -97,10 +98,26 @@ func openPr(client *APIClient, sha string) int {
 		return ExitCodePullRequestNotFound
 	}
 
-	openErr := open.Run(*pr.HTMLURL)
+	browser, err := GetBrowser()
+	if err != nil {
+		return ExitCodeOpenPageError
+	}
+	Debugf("browser: %s", browser)
+
+	url := *pr.HTMLURL
+	Debugf("URL: %s", url)
+
+	var openErr error
+	if browser == "" {
+		openErr = open.Run(url)
+	} else {
+		openErr = open.RunWith(url, browser)
+	}
 	if openErr != nil {
+		PrintErrorf("Could not open page. Check your browser and URL.")
 		return ExitCodeError
 	}
+
 	return ExitCodeOK
 }
 
