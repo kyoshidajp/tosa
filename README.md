@@ -54,6 +54,22 @@ $ go get -u github.com/kyoshidajp/tosa
 
 Download binary which meets your system from [Releases](release); then unarchive it and set `$PATH` to the `tosa`.
 
+## Configuration
+
+### Browser
+
+Add `browser` in your config file(which is YAML format) after once authenticated. Like this.
+
+```
+github.com:
+- user: your_account
+  oauth_token: your_oauth_token
+  protocol: https
+  browser: firefox
+```
+
+The value is a name or an absolute path. By default, used your system default browser.
+
 ## Author
 
 Katsuhiko YOSHIDA
