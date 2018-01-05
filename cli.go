@@ -94,20 +94,29 @@ func (c *CLI) Run(args []string) int {
 	return openPr(client, sha)
 }
 
-func openPr(client *APIClient, sha string) int {
-	pr, err := client.PullRequest(sha)
-	if err != nil || pr == nil {
+func openPr(c *APIClient, sha string) int {
+	// check cache
+	url, err := c.HTMLUrlByCache(sha)
+	if err != nil {
 		return ExitCodePullRequestNotFound
 	}
+	if url == "" {
+		pr, err := c.PullRequest(sha)
+		if err != nil || pr == nil {
+			return ExitCodePullRequestNotFound
+		}
+		url = *pr.HTMLURL
+	} else {
+		Debugf("Hit cache!")
+	}
+
+	Debugf("URL: %s", url)
 
 	browser, err := GetBrowser()
 	if err != nil {
 		return ExitCodeOpenPageError
 	}
 	Debugf("browser: %s", browser)
-
-	url := *pr.HTMLURL
-	Debugf("URL: %s", url)
 
 	var openErr error
 	if browser == "" {
@@ -145,6 +154,11 @@ func NewClient() (*APIClient, error) {
 		client:     client,
 		repository: repo,
 	}, nil
+}
+
+func (a *APIClient) HTMLUrlByCache(sha string) (string, error) {
+	cache, _ := NewCache()
+	return cache.GetHTMLUrl(sha)
 }
 
 func (a *APIClient) PullRequest(sha string) (*api.Issue, error) {

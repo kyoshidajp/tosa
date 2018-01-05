@@ -33,7 +33,7 @@ func setHubConfigEnv() (string, error) {
 		return "", err
 	}
 
-	confPath := filepath.Join(homeDir, ".config", "tosa")
+	confPath := filepath.Join(homeDir, ".config", "tosa", "tosa.yml")
 	err = os.Setenv("HUB_CONFIG", confPath)
 	if err != nil {
 		return "", err
@@ -54,7 +54,5 @@ func GetBrowser() (string, error) {
 	}
 
 	host := yc["github.com"][0]
-	Debugf("Config: %v", host)
-
 	return host.Browser, nil
 }
