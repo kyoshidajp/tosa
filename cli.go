@@ -7,14 +7,12 @@ import (
 	"io"
 	"log"
 	"os"
-	"path/filepath"
 
 	"golang.org/x/oauth2"
 
 	"github.com/github/hub/github"
 	api "github.com/google/go-github/github"
 	"github.com/mitchellh/colorstring"
-	homedir "github.com/mitchellh/go-homedir"
 	"github.com/skratchdot/open-golang/open"
 )
 
@@ -84,6 +82,10 @@ func (c *CLI) Run(args []string) int {
 	sha := parsedArgs[0]
 	Debugf("sha: %s", sha)
 
+	if _, err := setHubConfigEnv(); err != nil {
+		return ExitCodeError
+	}
+
 	client, err := NewClient()
 	if err != nil {
 		return ExitCodeError
@@ -122,17 +124,6 @@ func openPr(client *APIClient, sha string) int {
 }
 
 func NewClient() (*APIClient, error) {
-	homeDir, err := homedir.Dir()
-	if err != nil {
-		return nil, err
-	}
-
-	confPath := filepath.Join(homeDir, ".config", "tosa")
-	err = os.Setenv("HUB_CONFIG", confPath)
-	if err != nil {
-		return nil, err
-	}
-
 	c := github.CurrentConfig()
 	host, err := c.DefaultHost()
 	if err != nil {

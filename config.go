@@ -3,7 +3,9 @@ package main
 import (
 	"io/ioutil"
 	"os"
+	"path/filepath"
 
+	homedir "github.com/mitchellh/go-homedir"
 	"gopkg.in/yaml.v2"
 )
 
@@ -17,7 +19,26 @@ type yamlHost struct {
 type yamlConfig map[string][]yamlHost
 
 func configsFile() string {
-	return os.Getenv("HUB_CONFIG")
+	path := os.Getenv("HUB_CONFIG")
+	if path != "" {
+		return path
+	}
+	path, _ = setHubConfigEnv()
+	return path
+}
+
+func setHubConfigEnv() (string, error) {
+	homeDir, err := homedir.Dir()
+	if err != nil {
+		return "", err
+	}
+
+	confPath := filepath.Join(homeDir, ".config", "tosa")
+	err = os.Setenv("HUB_CONFIG", confPath)
+	if err != nil {
+		return "", err
+	}
+	return confPath, nil
 }
 
 func GetBrowser() (string, error) {
