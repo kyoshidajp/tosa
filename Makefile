@@ -6,7 +6,7 @@ GOARCH=$(word 2,$(subst /, ,$(lastword $(GOVERSION))))
 VERSION=$(patsubst "%",%,$(lastword $(shell grep 'const version' main.go)))
 RELEASE_DIR=releases
 ARTIFACTS_DIR=$(RELEASE_DIR)/artifacts/$(VERSION)
-SRC_FILES = $(wildcard *.go cmd/$(PROJECT_NAME)/*.go)
+SRC_FILES = $(wildcard *.go)
 GITHUB_USERNAME=kyoshidajp
 BUILD_TARGETS= \
 	build-linux-arm64 \
@@ -58,7 +58,7 @@ build-darwin-386:
 	@$(MAKE) build GOOS=darwin GOARCH=386
 
 $(RELEASE_DIR)/$(PROJECT_NAME)_$(GOOS)_$(GOARCH)/$(PROJECT_NAME)$(SUFFIX):
-	go build -o $(RELEASE_DIR)/$(PROJECT_NAME)_$(GOOS)_$(GOARCH)/$(PROJECT_NAME)$(SUFFIX) cmd/$(PROJECT_NAME)/$(PROJECT_NAME).go
+	go build -o $(RELEASE_DIR)/$(PROJECT_NAME)_$(GOOS)_$(GOARCH)/$(PROJECT_NAME)$(SUFFIX)
 
 all: $(BUILD_TARGETS)
 
