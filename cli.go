@@ -81,8 +81,8 @@ func (c *CLI) Run(args []string) int {
 	flags.BoolVar(&apiurl, "a", false, "")
 	flags.BoolVar(&newline, "newline", true, "")
 	flags.BoolVar(&newline, "n", true, "")
-	flags.BoolVar(&version, "version", true, "")
-	flags.BoolVar(&version, "v", true, "")
+	flags.BoolVar(&version, "version", false, "")
+	flags.BoolVar(&version, "v", false, "")
 
 	// Parse flag
 	if err := flags.Parse(args[1:]); err != nil {
