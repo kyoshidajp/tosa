@@ -65,6 +65,7 @@ func (c *CLI) Run(args []string) int {
 	var (
 		debug   bool
 		url     bool
+		apiurl  bool
 		newline bool
 	)
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
@@ -75,6 +76,8 @@ func (c *CLI) Run(args []string) int {
 	flags.BoolVar(&debug, "d", false, "")
 	flags.BoolVar(&url, "url", false, "")
 	flags.BoolVar(&url, "u", false, "")
+	flags.BoolVar(&apiurl, "apiurl", false, "")
+	flags.BoolVar(&apiurl, "a", false, "")
 	flags.BoolVar(&newline, "newline", true, "")
 	flags.BoolVar(&newline, "n", true, "")
 
@@ -105,6 +108,8 @@ func (c *CLI) Run(args []string) int {
 	var status int
 	if url {
 		status = printUrl(client, sha, newline)
+	} else if apiurl {
+		status = printAPIUrl(client, sha, newline)
 	} else {
 		status = openPr(client, sha)
 	}
@@ -125,6 +130,24 @@ func printUrl(client *APIClient, sha string, newline bool) int {
 		lastc = "\n"
 	}
 	format := fmt.Sprintf("%s%s", *pr.HTMLURL, lastc)
+	fmt.Fprint(os.Stdout, format)
+
+	return ExitCodeOK
+}
+
+func printAPIUrl(client *APIClient, sha string, newline bool) int {
+	Debugf("Print API URL")
+
+	pr, err := client.PullRequest(sha)
+	if err != nil || pr == nil {
+		return ExitCodePullRequestNotFound
+	}
+
+	lastc := ""
+	if newline {
+		lastc = "\n"
+	}
+	format := fmt.Sprintf("%s%s", *pr.URL, lastc)
 	fmt.Fprint(os.Stdout, format)
 
 	return ExitCodeOK
@@ -246,8 +269,10 @@ Options:
 
   -u, --url      Print the PullRequest url.
 
-  -n, --newline  If -u(--url) option is specified, print the PullRequest url
-                 with newline character at last.
+  -a, --apiurl   Print the Issue API url.
+
+  -n, --newline  If -u(--url) or --apiurl option is specified, print
+                 the url with newline character at last.
 
   -d, --debug    Enable debug mode.
                  Print debug log.

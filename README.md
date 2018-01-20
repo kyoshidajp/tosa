@@ -23,8 +23,10 @@ $ tosa sha
 ```
   -u, --url      Print the PullRequest url.
 
-  -n, --newline  If -u(--url) option is specified, print the PullRequest url
-                 with newline character at last.
+  -a, --apiurl   Print the Issue API url.
+
+  -n, --newline  If -u(--url) or --apiurl option is specified, print
+                 the url with newline character at last.
 
   -d, --debug    Enable debug mode.
                  Print debug log.
@@ -44,6 +46,23 @@ bind blame O @tosa %(commit)
 ```
 
 ![tig_main_blame](https://user-images.githubusercontent.com/3317191/34467237-ac5e76f4-ef2e-11e7-889d-6d28bf03b04d.gif)
+
+### API URL
+
+Get GitHub Issue API url.
+
+```
+$ tosa -a sha
+```
+
+Get title of PullRequest via [jq](https://stedolan.github.io/jq/), for example. 
+
+```
+$ curl -s `tosa -a c97e6909` | jq -r '.title'
+Add short command option and usage
+```
+
+For more information, see [Issues \| GitHub Developer Guide](https://developer.github.com/v3/issues/#get-a-single-issue). 
 
 ## Install
 
