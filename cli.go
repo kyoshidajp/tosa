@@ -23,7 +23,7 @@ const (
 	EnvDebug = "TOSA_DEBUG"
 )
 
-// Exit codes are in value that represnet an exit code for a paticular error.
+// Exit codes are in value that represnet an exit code for a paticular error
 const (
 	ExitCodeOK int = 0
 
@@ -42,7 +42,7 @@ func Debugf(format string, args ...interface{}) {
 	}
 }
 
-// PrintErrorf prints error message on console.
+// PrintErrorf prints error message on console
 func PrintErrorf(format string, args ...interface{}) {
 	format = fmt.Sprintf("[red]%s[reset]\n", format)
 	fmt.Fprint(os.Stderr,
@@ -54,12 +54,13 @@ type CLI struct {
 	outStream, errStream io.Writer
 }
 
+// APIClient is access/operate Github object
 type APIClient struct {
 	client     *api.Client
 	repository *api.Repository
 }
 
-// Run invokes the CLI with the given arguments.
+// Run invokes the CLI with the given arguments
 func (c *CLI) Run(args []string) int {
 	var debug bool
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
@@ -121,6 +122,7 @@ func openPr(client *APIClient, sha string) int {
 	return ExitCodeOK
 }
 
+// NewClient creates APIClient
 func NewClient() (*APIClient, error) {
 	homeDir, err := homedir.Dir()
 	if err != nil {
@@ -156,6 +158,7 @@ func NewClient() (*APIClient, error) {
 	}, nil
 }
 
+// PullRequest gets PullRequest object
 func (a *APIClient) PullRequest(sha string) (*api.Issue, error) {
 	res, _, err := a.client.Search.Issues(context.Background(),
 		fmt.Sprintf("%s is:merged repo:%v", sha, *a.repository.FullName), nil)
@@ -177,6 +180,7 @@ func (a *APIClient) PullRequest(sha string) (*api.Issue, error) {
 	return &res.Issues[0], nil
 }
 
+// Repository returns api.Repository
 func Repository(client *api.Client) (*api.Repository, error) {
 	localRepo, err := github.LocalRepo()
 	if err != nil {

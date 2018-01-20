@@ -20,6 +20,7 @@ func configsFile() string {
 	return os.Getenv("HUB_CONFIG")
 }
 
+// GetBrowser gets name of browser
 func GetBrowser() (string, error) {
 	buf, err := ioutil.ReadFile(configsFile())
 	if err != nil {
