@@ -2,7 +2,7 @@ package main
 
 import "os"
 
-const version = "0.0.2"
+const Version string = "0.0.2"
 
 func main() {
 	cli := &CLI{outStream: os.Stdout, errStream: os.Stderr}
