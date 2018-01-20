@@ -18,6 +18,20 @@ Open Pull request page from commit hash. You can easy to find why the code is in
 $ tosa sha
 ```
 
+### Options
+
+```
+  -u, --url      Print the PullRequest url.
+
+  -n, --newline  If -u(--url) option is specified, print the PullRequest url
+                 with newline character at last.
+
+  -d, --debug    Enable debug mode.
+                 Print debug log.
+
+  -h, --help     Show this help message and exit.
+```
+
 *NOTE*: Only first time, `tosa` requires your Github username and password(and two-factor auth code if you are setting). Because of using [GitHub API v3](https://developer.github.com/v3/).
 
 ### from tig
