@@ -32,6 +32,8 @@ $ tosa sha
                  Print debug log.
 
   -h, --help     Show this help message and exit.
+
+  -v, --version  Print current version.
 ```
 
 *NOTE*: Only first time, `tosa` requires your Github username and password(and two-factor auth code if you are setting). Because of using [GitHub API v3](https://developer.github.com/v3/).
