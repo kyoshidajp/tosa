@@ -62,9 +62,15 @@ type APIClient struct {
 
 // Run invokes the CLI with the given arguments
 func (c *CLI) Run(args []string) int {
-	var debug bool
+	var (
+		debug   bool
+		url     bool
+		newline bool
+	)
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	flags.BoolVar(&debug, "debug", false, "")
+	flags.BoolVar(&url, "url", false, "")
+	flags.BoolVar(&newline, "newline", true, "")
 
 	// Parse flag
 	if err := flags.Parse(args[1:]); err != nil {
@@ -90,7 +96,32 @@ func (c *CLI) Run(args []string) int {
 		return ExitCodeError
 	}
 
-	return openPr(client, sha)
+	var status int
+	if url {
+		status = printUrl(client, sha, newline)
+	} else {
+		status = openPr(client, sha)
+	}
+
+	return status
+}
+
+func printUrl(client *APIClient, sha string, newline bool) int {
+	Debugf("Print PullRequest URL")
+
+	pr, err := client.PullRequest(sha)
+	if err != nil || pr == nil {
+		return ExitCodePullRequestNotFound
+	}
+
+	lastc := ""
+	if newline {
+		lastc = "\n"
+	}
+	format := fmt.Sprintf("%s%s", *pr.HTMLURL, lastc)
+	fmt.Fprint(os.Stdout, format)
+
+	return ExitCodeOK
 }
 
 func openPr(client *APIClient, sha string) int {
