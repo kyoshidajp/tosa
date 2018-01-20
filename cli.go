@@ -67,6 +67,7 @@ func (c *CLI) Run(args []string) int {
 		url     bool
 		apiurl  bool
 		newline bool
+		version bool
 	)
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	flags.Usage = func() {
@@ -80,6 +81,8 @@ func (c *CLI) Run(args []string) int {
 	flags.BoolVar(&apiurl, "a", false, "")
 	flags.BoolVar(&newline, "newline", true, "")
 	flags.BoolVar(&newline, "n", true, "")
+	flags.BoolVar(&version, "version", true, "")
+	flags.BoolVar(&version, "v", true, "")
 
 	// Parse flag
 	if err := flags.Parse(args[1:]); err != nil {
@@ -89,6 +92,11 @@ func (c *CLI) Run(args []string) int {
 	if debug {
 		os.Setenv(EnvDebug, "1")
 		Debugf("Run as DEBUG mode")
+	}
+
+	if version {
+		fmt.Fprintf(c.outStream, fmt.Sprintf("%s\n", Version))
+		return ExitCodeOK
 	}
 
 	parsedArgs := flags.Args()
@@ -278,4 +286,6 @@ Options:
                  Print debug log.
 
   -h, --help     Show this help message and exit.
+
+  -v, --version  Print current version.
 `
