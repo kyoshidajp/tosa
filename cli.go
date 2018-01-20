@@ -68,9 +68,15 @@ func (c *CLI) Run(args []string) int {
 		newline bool
 	)
 	flags := flag.NewFlagSet(args[0], flag.ContinueOnError)
+	flags.Usage = func() {
+		fmt.Fprint(c.errStream, helpText)
+	}
 	flags.BoolVar(&debug, "debug", false, "")
+	flags.BoolVar(&debug, "d", false, "")
 	flags.BoolVar(&url, "url", false, "")
+	flags.BoolVar(&url, "u", false, "")
 	flags.BoolVar(&newline, "newline", true, "")
+	flags.BoolVar(&newline, "n", true, "")
 
 	// Parse flag
 	if err := flags.Parse(args[1:]); err != nil {
@@ -229,3 +235,22 @@ func Repository(client *api.Client) (*api.Repository, error) {
 	}
 	return repo, err
 }
+
+var helpText = `Usage: tosa [options...] sha
+
+tosa is a tool to open the PullRequest page.
+
+You must specify commit sha what you want to know PullRequest.
+
+Options:
+
+  -u, --url      Print the PullRequest url.
+
+  -n, --newline  If -u(--url) option is specified, print the PullRequest url
+                 with newline character at last.
+
+  -d, --debug    Enable debug mode.
+                 Print debug log.
+
+  -h, --help     Show this help message and exit.
+`
