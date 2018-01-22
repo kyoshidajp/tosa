@@ -12,6 +12,8 @@ TOSA is Open Source Available.
 
 Open Pull request page from commit hash. You can easy to find why the code is included by the page:mag_right:
 
+![tosa](https://user-images.githubusercontent.com/3317191/35214690-57fabb5e-ffa5-11e7-90b0-1a1d9f50ebab.gif)
+
 ## Usage
 
 ```
@@ -21,31 +23,33 @@ $ tosa sha
 ### Options
 
 ```
-  -u, --url      Print the PullRequest url.
+-u, --url      Print the PullRequest url.
 
-  -a, --apiurl   Print the Issue API url.
+-a, --apiurl   Print the Issue API url.
 
-  -n, --newline  If -u(--url) or --apiurl option is specified, print
-                 the url with newline character at last.
+-n, --newline  If -u(--url) or -a(--apiurl) option is specified, print
+               the url with newline character at last.
 
-  -d, --debug    Enable debug mode.
-                 Print debug log.
+-d, --debug    Enable debug mode.
+               Print debug log.
 
-  -h, --help     Show this help message and exit.
+-h, --help     Show this help message and exit.
 
-  -v, --version  Print current version.
+-v, --version  Print current version.
 ```
 
 *NOTE*: Only first time, `tosa` requires your Github username and password(and two-factor auth code if you are setting). Because of using [GitHub API v3](https://developer.github.com/v3/).
 
 ### from tig
 
-Add the following bind command in `~/.tigrc`.
+Add the following key bindings in `$HOME/.tigrc`.
 
 ```
 bind main O @tosa %(commit)
 bind blame O @tosa %(commit)
 ```
+
+Open page by O(Shift+o) in main or blame view.
 
 ![tig_main_blame](https://user-images.githubusercontent.com/3317191/34467237-ac5e76f4-ef2e-11e7-889d-6d28bf03b04d.gif)
 
@@ -87,13 +91,16 @@ $ go get -u github.com/kyoshidajp/tosa
 
 ### Manual
 
-Download binary which meets your system from [Releases](release); then unarchive it and set `$PATH` to the `tosa`.
+1. Download binary which meets your system from [Releases](release).
+1. Unarchive it.
+1. Put `tosa` where you want.
+1. Add `tosa` path to `$PATH`.
 
 ## Configuration
 
 ### Browser
 
-Add `browser` in your config file(which is YAML format) after once authenticated. Like this.
+Add `browser` in `$HOME/.config/tosa`(which is YAML format) after once authenticated. Like this.
 
 ```
 github.com:
