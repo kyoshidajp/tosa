@@ -10,22 +10,22 @@
 
 TOSA is Open Source Available.
 
-Open Pull request page from commit hash. You can easy to find why the code is included by the page:mag_right:
+Open pull request page from sha(commit hash). You can more easily find why the code is included by the page:mag_right:
 
 ![tosa](https://user-images.githubusercontent.com/3317191/35214690-57fabb5e-ffa5-11e7-90b0-1a1d9f50ebab.gif)
 
 ## Usage
 
 ```
-$ tosa sha
+$ tosa <sha>
 ```
 
 ### Options
 
 ```
--u, --url      Print the PullRequest url.
+-u, --url      Print the pull request url.
 
--a, --apiurl   Print the Issue API url.
+-a, --apiurl   Print the issue API url.
 
 -n, --newline  If -u(--url) or -a(--apiurl) option is specified, print
                the url with newline character at last.
@@ -55,13 +55,13 @@ Open page by O(Shift+o) in main or blame view.
 
 ### API URL
 
-Get GitHub Issue API url.
+Get GitHub issue API url.
 
 ```
 $ tosa -a sha
 ```
 
-Get title of PullRequest via [jq](https://stedolan.github.io/jq/), for example. 
+Get title of pull request via [jq](https://stedolan.github.io/jq/), for example.
 
 ```
 $ curl -s `tosa -a c97e6909` | jq -r '.title'
