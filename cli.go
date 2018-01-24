@@ -226,7 +226,7 @@ func NewClient() (*APIClient, error) {
 	}, nil
 }
 
-// PullRequest gets PullRequest object
+// PullRequest gets pull request object
 func (a *APIClient) PullRequest(sha string) (*api.Issue, error) {
 	res, _, err := a.client.Search.Issues(context.Background(),
 		fmt.Sprintf("%s is:merged repo:%v", sha, *a.repository.FullName), nil)
@@ -269,15 +269,15 @@ func Repository(client *api.Client) (*api.Repository, error) {
 
 var helpText = `Usage: tosa [options...] sha
 
-tosa is a tool to open the PullRequest page.
+tosa is a tool to open the pull request page.
 
-You must specify commit sha what you want to know PullRequest.
+You must specify commit sha what you want to know pull request.
 
 Options:
 
-  -u, --url      Print the PullRequest url.
+  -u, --url      Print the pull request url.
 
-  -a, --apiurl   Print the Issue API url.
+  -a, --apiurl   Print the issue API url.
 
   -n, --newline  If -u(--url) or --apiurl option is specified, print
                  the url with newline character at last.
