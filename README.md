@@ -38,7 +38,8 @@ $ tosa <sha>
 -v, --version  Print current version.
 ```
 
-*NOTE*: Only first time, `tosa` requires your Github username and password(and two-factor auth code if you are setting). Because of using [GitHub API v3](https://developer.github.com/v3/).
+*NOTE*: Set Github Access Token which has "Full control of private repositories" scope as an environment variable `GITHUB_TOKEN`. If not set, `tosa` requires your Github username and password(and two-factor auth code if you are setting). Because of using [GitHub API v3](https://developer.github.com/v3/).
+
 
 ### from tig
 

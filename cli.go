@@ -190,27 +190,50 @@ func openPr(client *APIClient, sha string) int {
 	return ExitCodeOK
 }
 
-// NewClient creates APIClient
-func NewClient() (*APIClient, error) {
+func getAccessTokenFromConf() (string, error) {
 	homeDir, err := homedir.Dir()
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	confPath := filepath.Join(homeDir, ".config", "tosa")
 	err = os.Setenv("HUB_CONFIG", confPath)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	c := github.CurrentConfig()
 	host, err := c.DefaultHost()
 	if err != nil {
+		return "", err
+	}
+
+	return host.AccessToken, nil
+}
+
+func getAccessToken() (string, error) {
+	token := os.Getenv("GITHUB_TOKEN")
+	if token != "" {
+		return token, nil
+	}
+
+	token, err := getAccessTokenFromConf()
+	if err != nil {
+		return "", err
+	}
+
+	return token, nil
+}
+
+// NewClient creates APIClient
+func NewClient() (*APIClient, error) {
+	token, err := getAccessToken()
+	if err != nil {
 		return nil, err
 	}
 
 	ts := oauth2.StaticTokenSource(
-		&oauth2.Token{AccessToken: host.AccessToken},
+		&oauth2.Token{AccessToken: token},
 	)
 	tc := oauth2.NewClient(context.Background(), ts)
 
