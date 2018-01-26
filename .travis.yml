@@ -1,0 +1,19 @@
+language: go
+
+go:
+  - 1.9.2
+
+os:
+  - osx
+
+sudo: false
+
+install:
+  - echo "skipping travis default"
+
+script:
+  - make test
+
+env:
+  global:
+    secure: AagOCwRk+TmtdeIeIVYFh2Kk15hEeUZve8A96HjRJzWspvL/Yu4xNMloUnGYvEPt77dSqIhMHJYx0Yw/z2xD/Zqhskzn8gCrN+R3PWIzEmZ6rwjvW4dEmPOR14II8EvMJFPC9Am/1oBGvGkIOWdd3yilqsubBUbifDVAyhtWjCGQpM7A5AVOAavlWbJJFkvgiJESQKR/RCDFxG9RAacFapxjvExzapuLHW5wM2PlS26mRBKLWzzHUQ1tsTWP34HBRZblZeR9bPC8nAUxjGAGzZFImeAKtJPnuPboOGh7QyXvd9SDl+TbxgtLnyjcG6WmtII8wgsc8KsxtS2TgZlydHIVFA0DFLUE2T7kBH6H8LXXpl/yI9+tdqCLG5k+WLusefSWR5fOWKNnfJxcpq/IHrKQ6uAMYyisCAyZ98EjbEGQT+oxYlJR0a6SY33DwTihxmhnsLV8WAAlz78DnfUDNjJrPtoWJ3g4izBEeD/APyusfnR15YAbT0ZVT8Kl7/zUvd4SQbNUiHq1wyj7PVEeTPSHkzMs6OktnPf+QfYsEUnxjhurqH7gBKtOtsBzVpalHlaopPI0GwZUxTKxGryuNVIqglmuW/Wd19RjuQsIeZVrzYDdqSG5g2RoDPSsL+gMTM/4kpZy8VhGvGMUYxkMkoct1WScpVUJvio87XvPIRg=

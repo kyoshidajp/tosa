@@ -116,7 +116,7 @@ release-upload: release release-github-token
 	ghr -u $(GITHUB_USERNAME) -t $(shell cat github_token) --draft --replace $(VERSION) $(ARTIFACTS_DIR)
 
 test:
-	$(GOTEST) -v ./...
+	go test -v ./...
 
 clean:
 	-rm -rf $(RELEASE_DIR)/*/*
