@@ -1,6 +1,7 @@
 # TOSA
 
 [![GitHub release](https://img.shields.io/github/release/kyoshidajp/tosa.svg?style=flat-square)][release]
+[![Travis](https://travis-ci.org/kyoshidajp/tosa.svg?branch=master)](https://travis-ci.org/kyoshidajp/tosa)
 [![Go Documentation](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)][godocs]
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)][license]
 
