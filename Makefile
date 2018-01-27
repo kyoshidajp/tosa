@@ -6,6 +6,7 @@ GOARCH=$(word 2,$(subst /, ,$(lastword $(GOVERSION))))
 VERSION=$(patsubst "%",%,$(lastword $(shell grep 'const Version' main.go)))
 RELEASE_DIR=releases
 ARTIFACTS_DIR=$(RELEASE_DIR)/artifacts/$(VERSION)
+PACKAGES = $(shell go list ./... | grep -v '/vendor/')
 SRC_FILES = $(wildcard *.go)
 GITHUB_USERNAME=kyoshidajp
 BUILD_TARGETS= \
@@ -115,8 +116,13 @@ release-github-token: github_token
 release-upload: release release-github-token
 	ghr -u $(GITHUB_USERNAME) -t $(shell cat github_token) --draft --replace $(VERSION) $(ARTIFACTS_DIR)
 
+test-all: vet test
+
 test:
-	go test -v ./...
+	go test -v ${PACKAGES}
+
+vet:
+	go vet ${PACKAGES}
 
 clean:
 	-rm -rf $(RELEASE_DIR)/*/*

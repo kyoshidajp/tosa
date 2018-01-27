@@ -13,7 +13,7 @@ install:
   - dep ensure
 
 script:
-  - make test
+  - make test-all
 
 env:
   global:
