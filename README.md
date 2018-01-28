@@ -9,9 +9,9 @@
 [license]: https://github.com/kyoshidajp/tosa/blob/master/LICENSE
 [godocs]: http://godoc.org/github.com/kyoshidajp/tosa
 
-TOSA is Open Source Available.
+**TOSA** is **O**pen **S**ource **A**vailable.
 
-Open pull request page from sha(commit hash). You can more easily find why the code is included by the page:mag_right:
+Open pull request page or get pull request data from sha(commit hash). You can more easily find why the code is included by the page:mag_right:
 
 ![tosa](https://user-images.githubusercontent.com/3317191/35214690-57fabb5e-ffa5-11e7-90b0-1a1d9f50ebab.gif)
 
@@ -60,7 +60,7 @@ Open page by O(Shift+o) in main or blame view.
 Get GitHub issue API url.
 
 ```
-$ tosa -a sha
+$ tosa -a <sha>
 ```
 
 Get title of pull request via [jq](https://stedolan.github.io/jq/), for example.
@@ -102,7 +102,7 @@ $ go get -u github.com/kyoshidajp/tosa
 
 ### Browser
 
-Add `browser` in `$HOME/.config/tosa`(which is YAML format) after once authenticated. Like this.
+Add `browser` in `$HOME/.config/tosa`(which is YAML format). Like this.
 
 ```
 github.com:
@@ -112,8 +112,10 @@ github.com:
   browser: firefox
 ```
 
+This config file is automatically generated when running without setting environment variable `GITHUB_TOKEN`.
+
 The value is a name or an absolute path. By default, used your system default browser.
 
 ## Author
 
-Katsuhiko YOSHIDA
+[Katsuhiko YOSHIDA](https://github.com/kyoshidajp)
