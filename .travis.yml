@@ -15,7 +15,6 @@ cache:
 install:
   - go get -u github.com/golang/dep/cmd/dep
   - dep ensure
-  - rm -fr vendor/github.com/github/hub && git clone https://github.com/github/hub.git vendor/github.com/github/hub
 
 script:
   - make test-all

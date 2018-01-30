@@ -8,12 +8,7 @@
   version = "v0.3.0"
 
 [[projects]]
-  name = "github.com/fhs/go-netrc"
-  packages = ["netrc"]
-  revision = "4ffed54ee5c32ebfb1b8c7c72fc90bb08dc3ff43"
-  version = "v1.0.0"
-
-[[projects]]
+  branch = "master"
   name = "github.com/github/hub"
   packages = [
     "cmd",
@@ -23,8 +18,7 @@
     "utils",
     "version"
   ]
-  revision = "80948b0688966a8f512820f869b4ec3237b7822e"
-  version = "v2.2.9"
+  revision = "9c2d6c2b00fede0020a3dfe25765ea5974cb2be3"
 
 [[projects]]
   branch = "master"
@@ -46,23 +40,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/jingweno/go-sawyer"
-  packages = [
-    ".",
-    "hypermedia",
-    "mediaheader",
-    "mediatype"
-  ]
-  revision = "1999ae5763d678f3ce1112cf1fda7c7e9cf2aadf"
-
-[[projects]]
-  name = "github.com/jtacoma/uritemplates"
-  packages = ["."]
-  revision = "307ae868f90f4ee1b73ebe4596e0394237dacce8"
-  version = "v1.0.0"
-
-[[projects]]
-  branch = "master"
   name = "github.com/kballard/go-shellquote"
   packages = ["."]
   revision = "cd60e84ee657ff3dc51de0b4f55dd299a3e136f2"
@@ -81,21 +58,15 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/mitchellh/go-homedir"
+  name = "github.com/mitchellh/colorstring"
   packages = ["."]
-  revision = "b8bc1bf767474819792c23f32d8286a45736f1c6"
+  revision = "8631ce90f28644f54aeedcb3e389a85174e067d1"
 
 [[projects]]
   branch = "master"
-  name = "github.com/octokit/go-octokit"
-  packages = ["octokit"]
-  revision = "812e91dfbd64051c1ec72c48feda0278727e8a4e"
-
-[[projects]]
-  name = "github.com/pkg/errors"
+  name = "github.com/mitchellh/go-homedir"
   packages = ["."]
-  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
-  version = "v0.8.0"
+  revision = "b8bc1bf767474819792c23f32d8286a45736f1c6"
 
 [[projects]]
   branch = "master"
@@ -156,9 +127,15 @@
   packages = ["."]
   revision = "9f9df34309c04878acc86042b16630b0f696e1de"
 
+[[projects]]
+  branch = "v2"
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  revision = "d670f9405373e636a5a2765eea47fac0c9bc91a4"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "59bdfc518ef817db372572daa81d23fc52c85efe48d25c3b2ddc5a077283098b"
+  inputs-digest = "10c5bcb0aceeeaa8d9e9c8416fbb386f3ee3574e0bfd8a4d54a1d2fae7f3ce5f"
   solver-name = "gps-cdcl"
   solver-version = 1

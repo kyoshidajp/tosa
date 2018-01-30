@@ -1,6 +1,6 @@
 [[constraint]]
   name = "github.com/github/hub"
-  version = "2.2.9"
+  branch = "master"
 
 [[constraint]]
   branch = "master"
