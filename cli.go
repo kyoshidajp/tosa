@@ -251,8 +251,14 @@ func NewClient() (*APIClient, error) {
 
 // PullRequest gets pull request object
 func (a *APIClient) PullRequest(sha string) (*api.Issue, error) {
-	res, _, err := a.client.Search.Issues(context.Background(),
-		fmt.Sprintf("%s is:merged repo:%v", sha, *a.repository.FullName), nil)
+	opt := &api.SearchOptions{
+		Sort:  "created",
+		Order: "asc",
+	}
+	res, _, err := a.client.Search.Issues(
+		context.Background(),
+		fmt.Sprintf("%s is:merged repo:%v", sha, *a.repository.FullName),
+		opt)
 	if err != nil {
 		return nil, err
 	}
