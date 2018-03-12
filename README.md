@@ -15,6 +15,8 @@ Open pull request page or get pull request data from sha(commit hash). You can m
 
 ![tosa](https://user-images.githubusercontent.com/3317191/35214690-57fabb5e-ffa5-11e7-90b0-1a1d9f50ebab.gif)
 
+If you want to run on VS Code? You can get VS Code extension from [Marketplace](https://marketplace.visualstudio.com/items?itemName=kyoshidajp.vscode-tosa).
+
 ## Usage
 
 ```
