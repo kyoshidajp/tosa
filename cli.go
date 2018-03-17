@@ -115,7 +115,7 @@ func (c *CLI) Run(args []string) int {
 
 	var status int
 	if url {
-		status = printUrl(client, sha, newline)
+		status = printURL(client, sha, newline)
 	} else if apiurl {
 		status = printAPIUrl(client, sha, newline)
 	} else {
@@ -125,7 +125,7 @@ func (c *CLI) Run(args []string) int {
 	return status
 }
 
-func printUrl(client *APIClient, sha string, newline bool) int {
+func printURL(client *APIClient, sha string, newline bool) int {
 	Debugf("Print PullRequest URL")
 
 	pr, err := client.PullRequest(sha)
