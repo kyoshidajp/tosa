@@ -2,6 +2,7 @@ package main
 
 import "os"
 
+// Version of tosa
 const Version string = "v0.0.3"
 
 func main() {
