@@ -13,7 +13,7 @@
 
 Open pull request page or get pull request data from sha(commit hash). You can more easily find why the code is included by the page:mag_right:
 
-![tosa](https://user-images.githubusercontent.com/3317191/35214690-57fabb5e-ffa5-11e7-90b0-1a1d9f50ebab.gif)
+![tosa1](https://user-images.githubusercontent.com/3317191/37557365-c279fabe-2a46-11e8-9c68-2c65f9862132.gif)
 
 If you want to run on VS Code? You can get VS Code extension from [Marketplace](https://marketplace.visualstudio.com/items?itemName=kyoshidajp.vscode-tosa).
 
@@ -55,7 +55,7 @@ bind blame O @tosa %(commit)
 
 Open page by O(Shift+o) in main or blame view.
 
-![tig_main_blame](https://user-images.githubusercontent.com/3317191/34467237-ac5e76f4-ef2e-11e7-889d-6d28bf03b04d.gif)
+![tig_tosa](https://user-images.githubusercontent.com/3317191/37557359-a14d0c64-2a46-11e8-92b3-b1d446757b92.gif)
 
 ### API URL
 
