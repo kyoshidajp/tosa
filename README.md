@@ -100,24 +100,6 @@ $ go get -u github.com/kyoshidajp/tosa
 1. Put `tosa` where you want.
 1. Add `tosa` path to `$PATH`.
 
-## Configuration
-
-### Browser
-
-Add `browser` in `$HOME/.config/tosa`(which is YAML format). Like this.
-
-```
-github.com:
-- user: your_account
-  oauth_token: your_oauth_token
-  protocol: https
-  browser: firefox
-```
-
-This config file is automatically generated when running without setting environment variable `GITHUB_TOKEN`.
-
-The value is a name or an absolute path. By default, used your system default browser.
-
 ## Author
 
 [Katsuhiko YOSHIDA](https://github.com/kyoshidajp)
