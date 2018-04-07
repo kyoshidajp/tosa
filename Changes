@@ -1,17 +1,39 @@
 Changes
 =======
 
-v0.0.3
+## v1.0.0
+
+### Added
+  * Run by the most recent commit when no args
+
+### Fixed
+  * Fix golint errors
+  * Fix opening the merged Pull Request problem
+  * Remove unsed replacing hub package process
+  * Fix hub error on test
+  * Fix always specified version option problem
+
+### Changed
+  * Disable browser path configuration
+  * Run dependencies package before running test
+  * Add cli test
+  * Get GITHUB_TOKEN env variable as Github access token before getting it from config file
+  * Update README contents
+  * Enable vendor cache on travis
+  * Add travis status
+  * Remove secret token key
+
+## v0.0.3
   * Add short command option and usage
   * Add print PullRequest url option
   * Add print Issue API url option
   * Add open any browser option
   * Add version option
 
-0.0.2
+## 0.0.2
   * Add document link
   * Raise not found error when Pull reqesut is not found 
   * Add debug option
 
-0.0.1
+## 0.0.1
   First release!
