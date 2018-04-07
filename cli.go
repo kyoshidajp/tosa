@@ -16,6 +16,7 @@ import (
 	"github.com/mitchellh/colorstring"
 	homedir "github.com/mitchellh/go-homedir"
 	"github.com/skratchdot/open-golang/open"
+	"gopkg.in/src-d/go-git.v4"
 )
 
 const (
@@ -98,16 +99,12 @@ func (c *CLI) Run(args []string) int {
 		return ExitCodeOK
 	}
 
-	parsedArgs := flags.Args()
-	if len(parsedArgs) != 1 {
-		PrintErrorf("Invalid argument: you must set sha.")
-		return ExitCodeBadArgs
+	client, err := NewClient()
+	if err != nil {
+		return ExitCodeError
 	}
 
-	sha := parsedArgs[0]
-	Debugf("sha: %s", sha)
-
-	client, err := NewClient()
+	sha, err := getSha(flags.Args())
 	if err != nil {
 		return ExitCodeError
 	}
@@ -140,6 +137,27 @@ func printURL(client *APIClient, sha string, newline bool) int {
 	fmt.Fprint(os.Stdout, format)
 
 	return ExitCodeOK
+}
+
+func getSha(args []string) (string, error) {
+	var sha string
+	if len(args) == 0 {
+		wd, _ := os.Getwd()
+		repo, err := git.PlainOpen(wd)
+		if err != nil {
+			return "", err
+		}
+		ref, err := repo.Head()
+		if err != nil {
+			return "", err
+		}
+		sha = ref.Hash().String()
+	} else {
+		sha = args[0]
+	}
+
+	Debugf("sha: %s", sha)
+	return sha, nil
 }
 
 func printAPIUrl(client *APIClient, sha string, newline bool) int {
@@ -284,11 +302,12 @@ func Repository(client *api.Client) (*api.Repository, error) {
 	return repo, err
 }
 
-var helpText = `Usage: tosa [options...] sha
+var helpText = `Usage: tosa [options...] [sha]
 
 tosa is a tool to open the pull request page.
 
-You must specify commit sha what you want to know pull request.
+sha is a commit hash you want to know the pull request.
+If not specified, get it from HEAD.
 
 Options:
 
